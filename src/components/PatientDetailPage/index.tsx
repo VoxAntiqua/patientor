@@ -4,6 +4,7 @@ import patientService from '../../services/patients';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import { useEffect, useState } from 'react';
+import EntryDetail from './EntryDetail';
 
 const PatientDetailPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,16 +21,20 @@ const PatientDetailPage = () => {
   if (patient) {
     return (
       <div>
-        <h3>
+        <h2>
           {patient.name}{' '}
           {patient.gender === 'other' ? null : patient.gender === 'female' ? (
             <FemaleIcon />
           ) : (
             <MaleIcon />
           )}
-        </h3>
+        </h2>
         <div>ssn: {patient.ssn}</div>
         <div>occupation: {patient.occupation}</div>
+        <h3>entries</h3>
+        {patient.entries.length === 0
+          ? 'no entries exist'
+          : patient.entries.map((e) => <EntryDetail entry={e} key={e.id} />)}
       </div>
     );
   } else {
