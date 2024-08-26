@@ -6,12 +6,28 @@ import MaleIcon from '@mui/icons-material/Male';
 import { Card } from '@mui/material';
 import { useEffect, useState } from 'react';
 import EntryDetail from './EntryDetail';
+import AddEntryModal from '../AddEntryModal';
+import { Button } from '@mui/material';
 
 interface Props {
   diagnoses: Diagnosis[];
 }
 
 const PatientDetailPage = ({ diagnoses }: Props) => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [error, setError] = useState<string>();
+
+  const openModal = (): void => setModalOpen(true);
+
+  const closeModal = (): void => {
+    setModalOpen(false);
+    setError(undefined);
+  };
+
+  const submitNewEntry = (): void => {
+    console.log('new entry submitted');
+  };
+
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
   useEffect(() => {
@@ -44,6 +60,15 @@ const PatientDetailPage = ({ diagnoses }: Props) => {
                 <EntryDetail entry={e} diagnoses={diagnoses} />
               </Card>
             ))}
+        <AddEntryModal
+          modalOpen={modalOpen}
+          onSubmit={submitNewEntry}
+          error={error}
+          onClose={closeModal}
+        />
+        <Button variant="contained" onClick={() => openModal()}>
+          Add New Entry
+        </Button>
       </div>
     );
   } else {
