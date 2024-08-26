@@ -63,3 +63,18 @@ export type Entry =
   | HospitalEntry
   | OccupationalHealthcareEntry
   | HealthCheckEntry;
+
+export interface HospitalEntryProps {
+  entry: HospitalEntry;
+  diagnoses: Diagnosis[];
+}
+
+export interface OccupationalHealthcareEntryProps {
+  entry: OccupationalHealthcareEntry;
+  diagnoses: Diagnosis[];
+}
+
+export interface HealthCheckEntryProps {
+  entry: HealthCheckEntry;
+  diagnoses: Diagnosis[];
+}

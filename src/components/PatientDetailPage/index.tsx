@@ -3,6 +3,7 @@ import { Patient } from '../../types';
 import patientService from '../../services/patients';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
+import { Card } from '@mui/material';
 import { useEffect, useState } from 'react';
 import EntryDetail from './EntryDetail';
 
@@ -34,7 +35,11 @@ const PatientDetailPage = () => {
         <h3>entries</h3>
         {patient.entries.length === 0
           ? 'no entries exist'
-          : patient.entries.map((e) => <EntryDetail entry={e} key={e.id} />)}
+          : patient.entries.map((e) => (
+              <Card variant="outlined" key={e.id}>
+                <EntryDetail entry={e} />
+              </Card>
+            ))}
       </div>
     );
   } else {
