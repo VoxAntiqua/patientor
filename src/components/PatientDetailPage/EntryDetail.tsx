@@ -6,26 +6,15 @@ import {
   OccupationalHealthcareEntryProps,
   HealthCheckRating,
 } from '../../types';
-import diagnosisService from '../../services/diagnoses';
-import { useState, useEffect } from 'react';
 import { Healing, MonitorHeart, MedicalServices } from '@mui/icons-material';
 import { CardHeader, CardContent } from '@mui/material';
 
 interface Props {
   entry: Entry;
+  diagnoses: Diagnosis[];
 }
 
-const EntryDetail = ({ entry }: Props) => {
-  const [diagnoses, setDiagnoses] = useState<Diagnosis[]>([]);
-
-  useEffect(() => {
-    const fetchDiagnoses = async () => {
-      const diagnoses = await diagnosisService.getAll();
-      setDiagnoses(diagnoses);
-    };
-    void fetchDiagnoses();
-  }, []);
-
+const EntryDetail = ({ entry, diagnoses }: Props) => {
   const assertNever = (value: never): never => {
     throw new Error(
       `Unhandled discriminated union member: ${JSON.stringify(value)}`

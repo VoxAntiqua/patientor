@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Patient } from '../../types';
+import { Patient, Diagnosis } from '../../types';
 import patientService from '../../services/patients';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
@@ -7,7 +7,11 @@ import { Card } from '@mui/material';
 import { useEffect, useState } from 'react';
 import EntryDetail from './EntryDetail';
 
-const PatientDetailPage = () => {
+interface Props {
+  diagnoses: Diagnosis[];
+}
+
+const PatientDetailPage = ({ diagnoses }: Props) => {
   const { id } = useParams<{ id: string }>();
   const [patient, setPatient] = useState<Patient | null>(null);
   useEffect(() => {
@@ -37,7 +41,7 @@ const PatientDetailPage = () => {
           ? 'no entries exist'
           : patient.entries.map((e) => (
               <Card variant="outlined" key={e.id}>
-                <EntryDetail entry={e} />
+                <EntryDetail entry={e} diagnoses={diagnoses} />
               </Card>
             ))}
       </div>
