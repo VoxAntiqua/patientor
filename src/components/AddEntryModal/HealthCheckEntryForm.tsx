@@ -34,7 +34,7 @@ const healthCheckRatingOptions: HealthCheckRatingOption[] = Object.values(
     label: HealthCheckRating[value as HealthCheckRating],
   }));
 
-const AddEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
+const HealthCheckEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
   if (!diagnoses) {
     return <div>Loading...</div>;
   }
@@ -153,4 +153,4 @@ const AddEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
   );
 };
 
-export default AddEntryForm;
+export default HealthCheckEntryForm;

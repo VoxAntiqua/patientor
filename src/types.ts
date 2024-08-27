@@ -22,7 +22,17 @@ export interface Patient {
 
 export type PatientFormValues = Omit<Patient, 'id' | 'entries'>;
 
-export type EntryFormValues = Omit<HealthCheckEntry, 'id'>;
+type HealthCheckEntryFormValues = Omit<HealthCheckEntry, 'id'>;
+type OccupationalHealthcareEntryFormValues = Omit<
+  OccupationalHealthcareEntry,
+  'id'
+>;
+type HospitalEntryFormValues = Omit<HospitalEntry, 'id'>;
+
+export type EntryFormValues =
+  | HealthCheckEntryFormValues
+  | OccupationalHealthcareEntryFormValues
+  | HospitalEntryFormValues;
 
 interface BaseEntry {
   id: string;
