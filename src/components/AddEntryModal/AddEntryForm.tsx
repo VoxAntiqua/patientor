@@ -7,13 +7,17 @@ import {
   Grid,
   Button,
   SelectChangeEvent,
+  Checkbox,
+  ListItemText,
+  OutlinedInput,
 } from '@mui/material';
 
-import { EntryFormValues, HealthCheckRating } from '../../types';
+import { Diagnosis, EntryFormValues, HealthCheckRating } from '../../types';
 
 interface Props {
   onCancel: () => void;
   onSubmit: (values: EntryFormValues) => void;
+  diagnoses: Diagnosis[];
 }
 
 interface HealthCheckRatingOption {
@@ -30,13 +34,23 @@ const healthCheckRatingOptions: HealthCheckRatingOption[] = Object.values(
     label: HealthCheckRating[value as HealthCheckRating],
   }));
 
-const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
+const AddEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
+  if (!diagnoses) {
+    return <div>Loading...</div>;
+  }
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
   const [specialist, setSpecialist] = useState('');
   const [healthCheckRating, setHealthCheckRating] = useState(
     HealthCheckRating.Healthy
   );
+  const [diagnosisCodes, setDiagnosisCodes] = useState<string[]>([]);
+
+  const diagnosisCodeOptions = diagnoses.map((d) => d.code);
+
+  const onDiagnosisCodeChange = (event: SelectChangeEvent<string[]>) => {
+    setDiagnosisCodes(event.target.value as string[]);
+  };
 
   const onHealthCheckRatingChange = (event: SelectChangeEvent<string>) => {
     event.preventDefault();
@@ -54,6 +68,7 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
       specialist,
       healthCheckRating,
       type: 'HealthCheck',
+      diagnosisCodes,
     });
   };
 
@@ -92,6 +107,23 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
           ))}
         </Select>
 
+        <InputLabel style={{ marginTop: 20 }}>Diagnosis Codes</InputLabel>
+        <Select
+          label="Diagnosis Codes"
+          multiple
+          value={diagnosisCodes}
+          onChange={onDiagnosisCodeChange}
+          input={<OutlinedInput label="Diagnosis Codes" />}
+          renderValue={(selected) => selected.join(', ')}
+        >
+          {diagnosisCodeOptions.map((option) => (
+            <MenuItem key={option} value={option}>
+              <Checkbox checked={diagnosisCodes.indexOf(option) > -1} />
+              <ListItemText primary={option} />
+            </MenuItem>
+          ))}
+        </Select>
+
         <Grid>
           <Grid item>
             <Button
@@ -120,4 +152,5 @@ const AddEntryForm = ({ onCancel, onSubmit }: Props) => {
     </div>
   );
 };
+
 export default AddEntryForm;
