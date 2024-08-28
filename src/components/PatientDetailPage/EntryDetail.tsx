@@ -73,6 +73,8 @@ const HospitalEntryDetails = ({ entry, diagnoses }: HospitalEntryProps) => {
             ))}
           </ul>
         ) : null}
+        <div>Discharge date: {entry.discharge.date}</div>
+        <div>Discharge criteria: {entry.discharge.criteria}</div>
         <p>Provider: {entry.specialist}</p>
       </CardContent>
     </div>
