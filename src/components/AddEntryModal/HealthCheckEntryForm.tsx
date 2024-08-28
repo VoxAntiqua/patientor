@@ -75,7 +75,9 @@ const HealthCheckEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
   return (
     <div>
       <form onSubmit={addEntry}>
-        <TextField
+        <InputLabel style={{ marginTop: 20 }}>Visit date</InputLabel>
+        <OutlinedInput
+          type="date"
           label="Date"
           fullWidth
           value={date}

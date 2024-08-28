@@ -55,7 +55,9 @@ const HospitalEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
   return (
     <div>
       <form onSubmit={addEntry}>
-        <TextField
+        <InputLabel style={{ marginTop: 20 }}>Visit date</InputLabel>
+        <OutlinedInput
+          type="date"
           label="Date"
           fullWidth
           value={date}
@@ -92,8 +94,10 @@ const HospitalEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
             </MenuItem>
           ))}
         </Select>
+        <InputLabel style={{ marginTop: 20 }}>Discharge date</InputLabel>
 
-        <TextField
+        <OutlinedInput
+          type="date"
           label="Discharge date"
           fullWidth
           value={dischargeDate}

@@ -61,7 +61,9 @@ const OccupationalHealthcareEntryForm = ({
   return (
     <div>
       <form onSubmit={addEntry}>
-        <TextField
+        <InputLabel style={{ marginTop: 20 }}>Visit date</InputLabel>
+        <OutlinedInput
+          type="date"
           label="Date"
           fullWidth
           value={date}
@@ -104,19 +106,26 @@ const OccupationalHealthcareEntryForm = ({
             </MenuItem>
           ))}
         </Select>
-
-        <TextField
-          label="Leave start date (optional)"
-          fullWidth
-          value={leaveStart}
-          onChange={({ target }) => setLeaveStart(target.value)}
-        />
-        <TextField
-          label="Leave end date (optional)"
-          fullWidth
-          value={leaveEnd}
-          onChange={({ target }) => setLeaveEnd(target.value)}
-        />
+        <Grid container spacing={2} style={{ marginTop: 20 }}>
+          <Grid item xs={6}>
+            <InputLabel>Leave start date (optional)</InputLabel>
+            <OutlinedInput
+              type="date"
+              fullWidth
+              value={leaveStart}
+              onChange={({ target }) => setLeaveStart(target.value)}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <InputLabel>Leave end date (optional)</InputLabel>
+            <OutlinedInput
+              type="date"
+              fullWidth
+              value={leaveEnd}
+              onChange={({ target }) => setLeaveEnd(target.value)}
+            />
+          </Grid>
+        </Grid>
 
         <Grid>
           <Grid item>
