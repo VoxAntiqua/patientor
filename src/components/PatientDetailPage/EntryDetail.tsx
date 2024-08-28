@@ -139,6 +139,13 @@ const OccupationalHealthcareEntryDetails = ({
             ))}
           </ul>
         ) : null}
+
+        {entry.sickLeave ? (
+          <div>
+            Sick leave: {entry.sickLeave.startDate} - {entry.sickLeave.endDate}
+          </div>
+        ) : null}
+
         <p>Provider: {entry.specialist}</p>
       </CardContent>
     </div>
