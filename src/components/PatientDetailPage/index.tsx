@@ -40,7 +40,9 @@ const PatientDetailPage = ({ diagnoses }: Props) => {
   const submitNewEntry = async (values: EntryFormValues) => {
     if (patient)
       try {
+        console.log('Values before sending:', values);
         const entry = await patientService.createEntry(patient?.id, values);
+        console.log(entry);
         setPatient({ ...patient, entries: patient.entries.concat(entry) });
         closeModal();
       } catch (e: unknown) {

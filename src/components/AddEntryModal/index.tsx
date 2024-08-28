@@ -14,6 +14,7 @@ import {
 import { Diagnosis, EntryFormValues } from '../../types';
 import HealthCheckEntryForm from './HealthCheckEntryForm';
 import HospitalEntryForm from './HospitalEntryForm';
+import OccupationalHealthcareEntryForm from './OccupationalHealthcareEntryForm';
 
 interface Props {
   modalOpen: boolean;
@@ -67,6 +68,13 @@ const AddEntryModal = ({
         )}
         {selectedEntryType === 'Hospital' && (
           <HospitalEntryForm
+            onSubmit={onSubmit}
+            onCancel={onClose}
+            diagnoses={diagnoses}
+          />
+        )}
+        {selectedEntryType === 'OccupationalHealthcare' && (
+          <OccupationalHealthcareEntryForm
             onSubmit={onSubmit}
             onCancel={onClose}
             diagnoses={diagnoses}

@@ -93,19 +93,6 @@ const HealthCheckEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
           value={specialist}
           onChange={({ target }) => setSpecialist(target.value)}
         />
-        <InputLabel style={{ marginTop: 20 }}>Health Check Rating</InputLabel>
-        <Select
-          label="Health Check Rating"
-          fullWidth
-          value={healthCheckRating.toString()}
-          onChange={onHealthCheckRatingChange}
-        >
-          {healthCheckRatingOptions.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Select>
 
         <InputLabel style={{ marginTop: 20 }}>Diagnosis Codes</InputLabel>
         <Select
@@ -120,6 +107,20 @@ const HealthCheckEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
             <MenuItem key={option} value={option}>
               <Checkbox checked={diagnosisCodes.indexOf(option) > -1} />
               <ListItemText primary={option} />
+            </MenuItem>
+          ))}
+        </Select>
+        <InputLabel style={{ marginTop: 20 }}>Health Check Rating</InputLabel>
+
+        <Select
+          label="Health Check Rating"
+          fullWidth
+          value={healthCheckRating.toString()}
+          onChange={onHealthCheckRatingChange}
+        >
+          {healthCheckRatingOptions.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
             </MenuItem>
           ))}
         </Select>
