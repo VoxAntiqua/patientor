@@ -86,7 +86,9 @@ const OccupationalHealthcareEntryForm = ({
           onChange={({ target }) => setSpecialist(target.value)}
         />
 
-        <InputLabel style={{ marginTop: 20 }}>Diagnosis Codes</InputLabel>
+        <InputLabel style={{ marginTop: 20 }}>
+          Diagnosis Codes (optional)
+        </InputLabel>
         <Select
           label="Diagnosis Codes"
           multiple
@@ -104,13 +106,13 @@ const OccupationalHealthcareEntryForm = ({
         </Select>
 
         <TextField
-          label="Leave start date"
+          label="Leave start date (optional)"
           fullWidth
           value={leaveStart}
           onChange={({ target }) => setLeaveStart(target.value)}
         />
         <TextField
-          label="Leave end date"
+          label="Leave end date (optional)"
           fullWidth
           value={leaveEnd}
           onChange={({ target }) => setLeaveEnd(target.value)}

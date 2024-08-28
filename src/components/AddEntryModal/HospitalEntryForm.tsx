@@ -74,7 +74,9 @@ const HospitalEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
           onChange={({ target }) => setSpecialist(target.value)}
         />
 
-        <InputLabel style={{ marginTop: 20 }}>Diagnosis Codes</InputLabel>
+        <InputLabel style={{ marginTop: 20 }}>
+          Diagnosis Codes (optional)
+        </InputLabel>
         <Select
           label="Diagnosis Codes"
           multiple
